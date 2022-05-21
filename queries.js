@@ -1,5 +1,4 @@
 const { Client } = require('pg')
-const { v4:uuidv4 } = require('uuid') 
 require('dotenv').config() 
 const client = new Client({ 
     user: process.env.DB_USER,
@@ -34,8 +33,8 @@ const getEmployeeById = (request, response) => {
 }
 
 const createEmployee = (request, response) => {
-    const id = uuidv4()
-    const {name, dob, phone, address} = request.body
+    // const id = uuidv4()
+    const {id, name, dob, phone, address} = request.body
     client.query("INSERT INTO public.employees (id, name, dob, phone, address) VALUES ($1, $2, $3, $4, $5)",
     [id, name, dob, phone, address], 
     (error, results) => {

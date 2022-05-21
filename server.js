@@ -3,7 +3,11 @@ const fastify = require('fastify')({
     ignoreTrailingSlash: true
 })
 
-const PORT = process.env.PORT || 5000
+fastify.register(require('fastify-cors'), {
+    origin: true
+});
+
+const PORT = process.env.PORT || 8000
 
 const db = require('./queries')
 
@@ -28,4 +32,3 @@ const start = async () => {
 }
 
 start()
-
